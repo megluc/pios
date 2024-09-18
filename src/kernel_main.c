@@ -2,7 +2,8 @@
 
 
 void kernel_main() {
-// adding a comment 
+// adding a comment
+// another comment  
     while(1){
     }
 }
