@@ -11,10 +11,13 @@ CFLAGS := -O0 -ffreestanding -fno-pie -fno-stack-protector -g3 -mcpu=cortex-a53+
 
 ODIR = obj
 SDIR = src
+BIN = kernel8.img
+
 
 OBJS = \
 	boot.o \
 	kernel_main.o \
+	new.o \
 
 
 
