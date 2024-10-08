@@ -13,11 +13,17 @@ ODIR = obj
 SDIR = src
 BIN = kernel8.img
 
+# Rule to link object files into the final kernel binary
+$(BIN): $(OBJ)
+    $(LD) $(OBJ) -Tkernel.ld -o $(BIN)
 
 OBJS = \
 	boot.o \
 	kernel_main.o \
 	new.o \
+	page.o \
+        notmaincore.o \
+	init_led.o \
 
 
 
@@ -41,7 +47,6 @@ bin: $(OBJ)
 clean:
 	rm -f obj/*
 	rm -f rootfs.img
-	rm -f rootfs.img
 	rm -f kernel8.img
 	rm -f kernel8.elf
 
@@ -64,4 +69,3 @@ rootfs.img:
 	sudo mkdir /mnt/disk/bin
 	sudo mkdir /mnt/disk/etc
 	sudo umount /mnt/disk
-
