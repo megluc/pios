@@ -15,7 +15,8 @@ BIN = kernel8.img
 
 # Rule to link object files into the final kernel binary
 $(BIN): $(OBJ)
-    $(LD) $(OBJ) -Tkernel.ld -o $(BIN)
+    $(LD) $(OBJ) -Tkernel.ld -o $(BIN)  # Must start with a tab
+    
 
 OBJS = \
 	boot.o \
@@ -24,16 +25,20 @@ OBJS = \
 	page.o \
         notmaincore.o \
 	init_led.o \
+        mmusetup.o \
+	mmu.o
 
 
-
+# Transform OBJS into OBJ paths
 OBJ = $(patsubst %,$(ODIR)/%,$(OBJS))
 
+# Compile rule for C files
 $(ODIR)/%.o: $(SDIR)/%.c
-	$(CC) $(CFLAGS) -c -g -o $@ $^
+	$(CC) $(CFLAGS) -c -g -o $@ $^  # Ensure this line starts with a tab
 
+# Compile rule for assembly files
 $(ODIR)/%.o: $(SDIR)/%.s
-	$(CC) $(CFLAGS) -c -g -o $@ $^
+	$(CC) $(CFLAGS) -c -g -o $@ $^  # Ensure this line starts with a tab
 
 
 all: bin rootfs.img
